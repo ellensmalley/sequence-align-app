@@ -25,7 +25,9 @@ SECRET_KEY = '0@3ye^=^w(ew&%y_=$x%n^mar0w_!*@9#mo2h@-29!zqhs78qz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['alignSequence-dev.us-east-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = [
+    'alignSequence-dev.us-east-2.elasticbeanstalk.com',
+    '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sequenceRequests.apps.SequencerequestsConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
