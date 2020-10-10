@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sequenceRequests.apps.SequencerequestsConfig',
-    'rest_framework'
+    'rest_framework',
+    'frontend', # enable the frontend app
 ]
 
 MIDDLEWARE = [
