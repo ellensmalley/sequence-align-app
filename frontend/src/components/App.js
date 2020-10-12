@@ -1,48 +1,40 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import SequenceForm from "./SequenceForm.js";
+import RequestList from "./RequestList.js";
+import UserForm from "./UserForm.js";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
-      loaded: false,
-      placeholder: "Loading"
+      user: '',
+      hasUser: false,
     };
   }
 
   componentDidMount() {
-    fetch("api/protein")
-      .then(response => {
-        if (response.status > 400) {
-          return this.setState(() => {
-            return { placeholder: "Something went wrong!" };
-          });
-        }
-        return response.json();
-      })
-      .then(data => {
-        this.setState(() => {
-          return {
-            data,
-            loaded: true
-          };
-        });
-      });
+    const user = localStorage.getItem('user');
+    if (user !== null && user !== undefined) {
+      this.setState({ user , hasUser: true });
+    }
   }
 
   render() {
-    return (
-      <ul>
-        {this.state.data.map(contact => {
-          return (
-            <li key={contact.id}>
-              {contact.name} - {contact.email}
-            </li>
-          );
-        })}
-      </ul>
-    );
+    if (this.state.hasUser) {
+      return (
+        <div>
+          <SequenceForm user={this.state.user} />
+          <RequestList user={this.state.user} /> 
+        </div>
+      );
+    } else {
+      return (
+        <UserForm />
+      );
+    }
+    
   }
 }
 

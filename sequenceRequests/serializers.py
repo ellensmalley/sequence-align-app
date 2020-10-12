@@ -6,8 +6,9 @@ class RequestSerializer(serializers.Serializer):
 	user = serializers.CharField(max_length=100)
 	sequence = serializers.CharField(max_length=300)
 	status = serializers.CharField(max_length=100, required=False, allow_blank=True, default="RUNNING")
+	genome = serializers.CharField(max_length=100, required=False, allow_blank=True)
+	location = serializers.CharField(max_length=100, required=False, allow_blank=True)
 	protein = serializers.CharField(max_length=100, required=False, allow_blank=True)
-	location = serializers.CharField(max_length=300, required=False, allow_blank=True)
 
 	def create(self, validated_data):
 		return Request.objects.create(**validated_data)
@@ -16,14 +17,16 @@ class RequestSerializer(serializers.Serializer):
 		instance.user = validated_data.get('user', instance.user)
 		instance.sequence = validated_data.get('sequence', instance.sequence)
 		instance.status = validated_data.get('status', instance.status)
-		instance.protein = validated_data.get('protein', instance.protein)
+		instance.genome = validated_data.get('genome', instance.genome)
 		instance.location = validated_data.get('location', instance.location)
+		instance.protein = validated_data.get('protein', instance.protein)
 		instance.save()
 		return instance
 
-	def update_with_result(self, instance, found_protein, found_location):
-		instance.status = "DONE"
-		instance.protein = found_protein
-		instance.location = found_location
-		instance.save()
-		return instance
+	def update_with_result(self, found_genome, found_location, found_protein):
+		self.instance.status = "DONE"
+		self.instance.genome = found_genome
+		self.instance.location = found_location
+		self.instance.protein = found_protein
+		self.instance.save()
+		return self.instance
