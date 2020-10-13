@@ -10,7 +10,7 @@ class AlignmentService:
 
 	# Not using method due to risk of surpassing limits on Entrez access
 	# def fetch_sequence_file_and_save(self, sequence_name, filename):
-		# Entrez.email = "e.smalley117@gmail.com"
+		# Entrez.email = <removed private email>
 		# handle = Entrez.efetch(db="nucleotide", id=sequence_name, rettype="gb", retmode="text")
 		# f = open(filename, "w+")
 		# f.write(handle.read())
