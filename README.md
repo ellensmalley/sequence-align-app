@@ -38,6 +38,7 @@ This can lead to a few result cases:
 2. If a sequence is found in the genome but a portion of the sequence is non-coding, the algo will append this location and genome to a list of possible return values
 3. If a sequence is not found to reside entirely within a protein encoding region, one of these possibiltiies will be returned.  
 4. If a sequence is not found, empty strings will be returned for the location details.
+Note that if the sequence appears multiple times througout different genomes, the first one found entirely within a coding region is returned.
 
 ### Ideas for Future Enhancements
 Ideally these protein sequences should not be stored in static files but rather in document storage like an S3 bucket or in Elastic Search. If a file is missing from these locations, it could be fetched using NCBI's Entrez databases.  
