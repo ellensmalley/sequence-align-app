@@ -14,15 +14,15 @@ When first visiting the applicaiton, a user will need to pick a name to associat
 * biopython 1.78
 * awsebcli 3.19 for deployment
 * In case of issue, exact packages for your python virtual environment can be found in `./requirements.txt`
-* Add `export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES` at bottom of `.bash_profile` to allow for multiprocessing when running locally
+* Add `export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES` at bottom of `.bash_profile` to allow for multiprocessing when running locally on a recent version of macOS. 
 
 ## Project Structure
 `./alignSequence` is the base directory of the Django project.
 
-`./sequenceRequests` directory stores the backend Django API service of the application, i.e. the views, serializers, and Request model.
+`./sequenceRequests` app stores the backend Django API service of the application, i.e. the views, serializers, and Request model.
 This directory also contains the `alignmentService` class in `./sequenceRequests/alignmentService.py` which contains the logic of searching for the chosen sequence.
 
-`./frontend` directory contains a simple REACT application, all components are within the `src/components/` directory.
+`./frontend` app contains a simple REACT application, all components are within the `src/components/` directory.
 
 ## Running Locally
 Create and activate a python virtual environment with requirements above then from the top level project directory run `python manage.py runserver`
